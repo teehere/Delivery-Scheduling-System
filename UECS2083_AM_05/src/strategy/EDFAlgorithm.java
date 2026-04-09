@@ -3,7 +3,7 @@ package strategy;
 import java.util.*;
 import model.Delivery;
 
-// initialize task -> task priority -> scheduling -> execution -> all tasks? -> result hihi
+// initialize task -> task priority -> scheduling -> execution -> all tasks? -> result
 public class EDFAlgorithm extends AbstractDeliveryStrategy<Delivery> {
 
 	public EDFAlgorithm(List<Delivery> delivery) { 
