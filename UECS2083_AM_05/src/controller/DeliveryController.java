@@ -109,21 +109,30 @@ public class DeliveryController {
 	    	case "1":
 	    		// selected (highest/lowest/average profit/deadline analysis/)
 	    		view.displaySelectedSequence(strategy.getSelected());
-	    		System.out.println("Press any key to return.................");
+	    		System.out.println("Press any key to return...");
 	    		scanner.nextLine();
-	    		return;
+	    		break;
+
 	    	case "2":
 	    		// unselected (potential profit lost/reason why unselected/suggestion/deadline analysis...)
-	    		System.out.println("Press any key to return.................");
+	    		System.out.println("Press any key to return...");
 	    		scanner.nextLine();
+	    		break;
 	    	case "3":
+<<<<<<< HEAD
 	    		view.printSummary(strategy, deliveries);
 	    		System.out.println("Press any key to return.................");
+=======
+	    		// summary (total jobs/ selected/unselected job/missed deadline/profit earned/loss/average profit per job/...)
+	    		System.out.println("Press any key to return...");
+>>>>>>> branch 'main' of https://github.com/teehere/Job-Sequence-Problem.git
 	    		scanner.nextLine();
+	    		break;
 	    	case "4":
 	    		// comparison
-	    		System.out.println("Press any key to return.................");
+	    		System.out.println("Press any key to return...");
 	    		scanner.nextLine();
+	    		break;
 	    	case "5":
 	    		System.out.println("Returning to Previous Menu");
                 return;
