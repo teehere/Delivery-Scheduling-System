@@ -11,9 +11,6 @@ public class DPAlgorithm extends AbstractDeliveryStrategy<Delivery>{
 	@Override
 	public void schedule(List<Delivery> deliveries) {
 		//O(1)
-		selected.clear();
-		unselected.clear();
-		totalProfit = 0;
 		int n = deliveries.size();
 		
 		

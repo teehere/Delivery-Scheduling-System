@@ -11,7 +11,7 @@ public class GreedyAlgorithm extends AbstractDeliveryStrategy<Delivery> {
 
     @Override
     public void schedule(List<Delivery> delivery) {
-
+    	
         // sort by highest profit
     	delivery.sort((a, b) -> Double.compare(b.getProfit(), a.getProfit()));
 

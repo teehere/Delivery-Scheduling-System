@@ -7,6 +7,7 @@ import view.DisplayView;
 import util.*;
 
 import java.util.*;
+import model.Result;
 
 public class DeliveryController {
     
@@ -14,6 +15,7 @@ public class DeliveryController {
     private List<Delivery> deliveries;
     private String source;
     private Scanner scanner;
+    private List<Result> result = new ArrayList<>();
     
     public DeliveryController() {
         this.view = new DisplayView(); // show UI
@@ -72,8 +74,9 @@ public class DeliveryController {
 	        long start = System.currentTimeMillis();
 	        strategy.schedule(deliveries);
 	        long end = System.currentTimeMillis();
-	        
-	        showResults(strategy, end - start);
+	        long time = end - start;
+	        result.add(new Result(strategy.getClass().getSimpleName(), time, strategy.getTotalProfit()));
+	        showResults(strategy, time);
     	}
     }
     
@@ -124,6 +127,7 @@ public class DeliveryController {
 	    		break;
 	    	case "4":
 	    		// comparison
+	    		view.compareAlgorithm(result);
 	    		System.out.println("Press any key to return...");
 	    		scanner.nextLine();
 	    		break;

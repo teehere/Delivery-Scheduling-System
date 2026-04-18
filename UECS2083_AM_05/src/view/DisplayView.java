@@ -2,15 +2,19 @@ package view;
 
 // import from defined package
 import model.Delivery;
+import model.Result;
 import strategy.AbstractDeliveryStrategy;
+import strategy.GreedyAlgorithm;
+import strategy.DPAlgorithm;
+import strategy.EDFAlgorithm;
 
 import java.util.*;
 import java.time.format.DateTimeFormatter;
-import java.util.*
+
 ;public class DisplayView {
 	
 	public static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+	
     
     // will be displayed when load data
     public void showMainMenu() {
@@ -198,4 +202,69 @@ import java.util.*
  		System.out.println("=".repeat(130));
  		System.out.printf("TOTAL PROFIT LOST: %.2f\n", profitLost);
  	}
+ 	
+ 	//display comparison by time complexity and profit
+ 	public void compareAlgorithm(List<Result> result) {
+ 		System.out.println("\n================ COMPARISON ================");
+ 		System.out.printf("%-20s | %-10s | %-10s\n", "Algorithm", "Time(ms)", "Profit");
+ 		
+ 		String best = "";
+ 		long bestTime = Long.MAX_VALUE;
+ 		double bestProfit = -1;
+ 		
+ 		for(Result r : result) {
+ 			String name = r.getName();
+ 			long t = r.getTime();
+ 			double profit = r.getProfit();
+ 			System.out.printf("%-20s | %-10d | %-10.2f\n", name, t, profit);
+ 			
+ 			if(profit > bestProfit || profit == bestProfit && t < bestTime){
+ 				bestProfit = profit;
+ 				bestTime = t;
+ 				best = name;
+ 			}
+
+ 		}
+ 	
+ 		System.out.println("==========================================");
+ 	    System.out.println("BEST ALGORITHM RESULT");
+ 	    System.out.println("Algorithm : " + best);
+ 	    System.out.printf("Profit    : %.2f\n", bestProfit);
+ 	    System.out.println("Time (ms) : " + bestTime);
+ 	
+ 	
+ 	
+ 	}
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
 }
