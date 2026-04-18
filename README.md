@@ -35,9 +35,9 @@ With limited resources (single driver/vehicle), the company must select orders a
 | **Item** | String | Product being delivered |
 | **OrderDate** | Local Date | Date when order was placed |
 | **Deadline** | Local Date | Latest date for delivery |
-| **Sales** | Integer | Selling price per unit (RM) |
+| **Sales** | Double | Selling price per unit (RM) |
 | **Quantity** | Integer | Number of units ordered) |
-| **Profit** | Integer | Total profit = sales * quantity |
+| **Profit** | Double | Total profit = sales * quantity |
 
 ## Features
 | Feature | Description |
@@ -48,12 +48,12 @@ With limited resources (single driver/vehicle), the company must select orders a
 | **Result Analysis** | View Selected, Unselected, Summary Report, Algorithm Performance Comparison |
 
 ## Algorithms Implemented
-| Algorithm | Time Complexity | Space Complexity |
-|-----------|-----------------|------------------|
-| **Greedy Algorithm** |  |  |
-| **Task Priority Scheduling (Weighted)** |  |  |
-| **Dynamic Programming** |  |  |
-| **Earliest Deadline First (EDF)** |  O(n log n) | O(n) |
+| Algorithm | Time Complexity |
+|-----------|-----------------|
+| **Greedy Algorithm** | O(n^2) |  
+| **Task Priority Scheduling (Weighted)** | O(n log n) |  
+| **Dynamic Programming** | O(n*D) |  
+| **Earliest Deadline First (EDF)** |  O(n log n) | 
 
 ## System Design
 - DeliveryStrategy<E> Interface
