@@ -55,6 +55,26 @@ With limited resources (single driver/vehicle), the company must select orders a
 | **Dynamic Programming** | O(n*D) |  
 | **Earliest Deadline First (EDF)** |  O(n log n) | 
 
+## Performance Comparison Table
+| Aspect | Greedy Algorithm | Task Priority Scheduling (Weighted) | Dynamic Programming | Earliest Deadline First (EDF) | 
+|-----------|-----------------|------------------|------------------|------------------|
+| **Core Strategy** | Highest profit first |  | Break complex problem into subproblems and solve the subproblems | Earliest deadline first |
+| **Time Complexity** | O(n^2) | O(n log n) | O(n*D)| O(n log n)|
+| **Deadline Guarantee** | No | No | Yes | Yes |
+| **Profit Maximizied** | Yes | Yes | Yes | No |
+| **Scalability** | Poor | Excellent | Moderate | Excellent |
+| **Implementation Complexity** | Low | Moderate | High | Low |
+| **Speed** | Slow for larger input size, n | Fast | Moderate | Fastest |
+
+#### _Which Algorithm Win? Performs the Best?_
+| If priority is... | Choose... | Reason | 
+|-----------|-----------------|------------------|
+| **Meeting deadlines at all costs** | EDF | Guarantees every scheduled job meets its deadline | 
+| **Maximum profit (small dataset)** | DP | Guarantees 100% optimal profit | 
+| **Flexible priority system** | Task Priority | Customizable weights for different factors |
+| **Quick and simple solution** | EDF and Greedy | Minimal code, and easy to understand | 
+| **Multi-factor decisions** | Task Priority | Can incorporate profit, deadlines, customer value, distance, and etc | 
+
 ## System Design
 - DeliveryStrategy<E> Interface
   - Provide scheduling behavior, which allows different algorithm implementations
