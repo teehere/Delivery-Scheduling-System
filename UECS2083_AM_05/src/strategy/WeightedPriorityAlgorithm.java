@@ -12,45 +12,66 @@ public class WeightedPriorityAlgorithm extends AbstractDeliveryStrategy<Delivery
     @Override
     public void schedule(List<Delivery> delivery) {
 
-        // clear previous results 
+        //clear previous results 
         selected.clear();
         unselected.clear();
         totalProfit = 0;
-        
-        // check if the input list is valid
+
+        //check if input is valid
         if (delivery == null || delivery.isEmpty()) {
             return;
         }
 
-        // priority queue sorted by highest profit 
+        //find maximum deadline
+        int maxDeadline = 0;
+        for (Delivery d : delivery) {
+            if (d.getDeadline() > maxDeadline) {
+                maxDeadline = d.getDeadline();
+            }
+        }
+
+        //create array to store scheduled jobs and track taken slots
+        Delivery[] scheduleSlots = new Delivery[maxDeadline + 1];
+        boolean[] slotTaken = new boolean[maxDeadline + 1];
+
+        // priority queue sorted by highest profit
         PriorityQueue<Delivery> pq = new PriorityQueue<>(
                 (a, b) -> Double.compare(b.getProfit(), a.getProfit())
         );
 
-        // add all deliveries into the priority queue
         pq.addAll(delivery);
-        
-        int order = 1; // track execution order
 
-        // process deliveries based on highest priority 
+        int order = 1;
+
+        // process highest profit job first
         while (!pq.isEmpty()) {
             Delivery d = pq.poll();
 
-            // display order and delivery details
-            System.out.println(order + ". " + d.getId() 
-                    + " | Profit: " + d.getProfit()
-                    + " | Deadline: " + d.getDeadline());
+            //to assign a delivery job to the latest avaiable slot within its deadline
+            boolean placed = false;
 
-            selected.add(d); // mark job as selected
-            totalProfit += d.getProfit(); // update total profit
-            
-            order++; 
-        }
+            for (int t = d.getDeadline(); t >= 1; t--) {
+                if (t <= maxDeadline && !slotTaken[t]) {
+                    scheduleSlots[t] = d;
+                    slotTaken[t] = true;
 
-        // find jobs that were unselected
-        for (Delivery job : delivery) {
-            if (!selected.contains(job)) {
-                unselected.add(job);
+                    selected.add(d);
+                    totalProfit += d.getProfit();
+
+                    System.out.println(order + ". " + d.getId()
+                            + " | Profit: " + d.getProfit()
+                            + " | Deadline: " + d.getDeadline()
+                            + " | Scheduled at slot: " + t);
+
+                    placed = true;
+                    order++;
+                    break;
+                }
+            }
+
+            //identify unselected jobs
+            if (!placed) {
+                unselected.add(d);
             }
         }
     }
